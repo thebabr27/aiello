@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+
+*{
+  font-family: 'Roboto', sans-serif;
+
+}
+
+/* my normalize settings */
+ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  p {
+      padding: 0;
+      margin: 0;
+    }
+
+  div {
+    padding: 0;
+    margin: 0;
+  }
+
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  h2 {
+    padding: 0;
+    margin: 0;
+  }
+
+  h3 {
+    padding: 0;
+    margin: 0;
+  }
+
+  h4 {
+    padding: 0;
+    margin: 0;
+  }
+
+  h5 {
+    padding: 0;
+    margin: 0;
+  }
+
+  h6 {
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    padding: 0;
+    margin: 0;
+  }
+
+  img {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+  background: linear-gradient(180deg, #9CC6FF 0%, #F2835D 100%);
+  /*
+  */
+  background-image: url("C:/Users/Utente/Desktop/08 Codice/src/img/reference_HOME_alba_bn.png");
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.inline {
+  display: inline-flex;
+}
+
+.mycenter
+{
+    text-align: right;
+}
+
+.container {
+  height: calc(100vh - 11%);
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  height: 45px;
+}
+
+.mycard {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+.mycard-1 {
+  margin-bottom: 65px;
+  margin-top: 30px;
+
+}
+
+.mycard-2 {
+}
+
+.mycard-3 {
+  margin-top: 10%;
+  word-wrap: break-word;
+}
+
+.mycard-4 {
+  width: 75%;
+  margin-bottom: 15px;
+}
+
+.padding-topbottom-1 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.padding-leftright-1 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.margin-topbottom-1 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.margin-leftright-1 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.display-4 {
+  font-size: 660%;
+}
+.display-3 {
+  vertical-align: middle;
+  font-size: 233%;
+}
+
+.display-2 {
+  font-size: 153%;
+}
+
+.display-1 {
+  font-size: 90%;
+}
+
+.shadow-1 {
+text-shadow: 1px 1px 1px #000000;
+}
+
+.shadow-2 {
+text-shadow: 2px 2px 1px #000000;
+}
+.fill-1 {
+  color: #FFFFFF;
+}
+.fill-2 {
+  color: #FFC700;
+}
+.maxi-icona-position {
+  top: 60px;
+  right: -165px;
+}
+.citta-giorno-ora-position {
+  top: 60px;
+  right: -165px;
+}
+/*
