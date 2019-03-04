@@ -66,7 +66,7 @@ body {
   background: linear-gradient(180deg, #9CC6FF 0%, #F2835D 100%);
   /*
   */
-  background-image: url("src/img/reference_HOME_alba_bn.png");
+  background-image: url("../../reference_HOME_alba_bn.png");
   
   background-repeat: no-repeat;
   padding: 0;
@@ -81,8 +81,7 @@ body {
   display: inline-flex;
 }
 
-.mycenter
-{
+.mycenter {
     text-align: right;
 }
 
@@ -105,10 +104,10 @@ nav {
   margin-top: 30px;
 
 }
-
+/*
 .mycard-2 {
 }
-
+*/
 .mycard-3 {
   margin-top: 10%;
   word-wrap: break-word;
