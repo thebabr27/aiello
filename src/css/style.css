@@ -88,16 +88,16 @@
     100%  {left: -200%;top: -40%}
   }
   @-webkit-keyframes translate2 {
-    0%   {right: 150%;top: 0%}
-    100%  {right: -150%;top: -70%}
+    0%   {right: 200%;top: 0%}
+    100%  {right: -200%;top: -50%}
   }
   @-moz-keyframes translate2 {
-    0%   {right: 150%;top: 0%}
-    100%  {right: -150%;top: -70%}
+    0%   {right: 200%;top: 0%}
+    100%  {right: -200%;top: -50%}
   }
   @keyframes translate2 {
-    0%   {right: 150%;top: 0%}
-    100%  {right: -150%;top: -70%}
+    0%   {right: 200%;top: 0%}
+    100%  {right: -200%;top: -50%}
   }
   @-webkit-keyframes move-right {
     0%   {left: 300%;}
