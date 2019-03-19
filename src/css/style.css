@@ -288,6 +288,24 @@ body {
   animation: move-right 20s linear infinite;
   }
 
+  #animation5 {
+  -webkit-animation: scale .1s alternate infinite; /* Safari 4.0 - 8.0 */
+  -moz-animation: scale .1s alternate infinite;
+  animation: scale .1s alternate infinite;
+  }
+
+  #animation6 {
+  -webkit-transform: rotate(10deg);
+  -webkit-transform: scale(.4,.4);
+  -moz-transform: rotate(10deg);
+  -moz-transform: scale(.4,.4);
+  transform: rotate(10deg);
+  transform: scale(.4,.4);
+    -webkit-animation: translate1 3s linear infinite;
+    -moz-animation: translate1 3s linear infinite;
+    animation: translate1 3s linear infinite;
+  }
+
 /* table ID */
 #table1 {
       line-height: 7.6vw;
