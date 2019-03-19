@@ -378,6 +378,12 @@ body {
   animation: move-right 20s linear infinite;
   }
 
+  #animation4 {
+  -webkit-animation: rotate 20s linear infinite; /* Safari 4.0 - 8.0 */
+  -moz-animation: rotate 20s linear infinite;
+  animation: rotate 20s linear infinite;
+  }
+
   #animation5 {
   -webkit-animation: scale .1s alternate infinite; /* Safari 4.0 - 8.0 */
   -moz-animation: scale .1s alternate infinite;
@@ -395,6 +401,32 @@ body {
     -moz-animation: translate1 3s linear infinite;
     animation: translate1 3s linear infinite;
   }
+  #animation7 {
+  -webkit-transform: scaleX(-1) rotate(20deg);
+  -moz-transform: scaleX(-1) rotate(20deg);
+  transform: scaleX(-1) rotate(20deg);
+    -webkit-animation: translate2 3s linear infinite;
+    -moz-animation: translate2 3s linear infinite;
+    animation: translate2 3s linear infinite;
+  }
+  #animation8 {
+  -webkit-transform: rotate(10deg);
+  -moz-transform: rotate(10deg);
+  transform: rotate(10deg);
+    -webkit-animation: translate1 3s linear infinite;
+    -moz-animation: translate1 3s linear infinite;
+    animation: translate1 3s linear infinite;
+  }
+
+        .locate1 {
+          top: 80vh;
+        }
+        .locate2 {
+          top: 50vh;
+        }
+        .locate3 {
+          bottom: 100vh;
+        }
 
 /* table ID */
 #table1 {
