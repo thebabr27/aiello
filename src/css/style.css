@@ -397,9 +397,9 @@ body {
   -moz-transform: scale(.4,.4);
   transform: rotate(10deg);
   transform: scale(.4,.4);
-    -webkit-animation: translate1 2s linear infinite;
-    -moz-animation: translate1 2s linear infinite;
-    animation: translate1 2s linear infinite;
+    -webkit-animation: translate1 3s linear infinite;
+    -moz-animation: translate1 3s linear infinite;
+    animation: translate1 3s linear infinite;
   }
   #animation7 {
   -webkit-transform: scaleX(-1) rotate(20deg);
@@ -422,7 +422,7 @@ body {
           top: 80vh;
         }
         .locate2 {
-          top: 50vh;
+          top: 100vh;
         }
         .locate3 {
           bottom: 100vh;
