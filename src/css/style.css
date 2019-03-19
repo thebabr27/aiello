@@ -397,25 +397,25 @@ body {
   -moz-transform: scale(.4,.4);
   transform: rotate(10deg);
   transform: scale(.4,.4);
-    -webkit-animation: translate1 1s linear infinite;
-    -moz-animation: translate1 1s linear infinite;
-    animation: translate1 1s linear infinite;
+    -webkit-animation: translate1 2s linear infinite;
+    -moz-animation: translate1 2s linear infinite;
+    animation: translate1 2s linear infinite;
   }
   #animation7 {
   -webkit-transform: scaleX(-1) rotate(20deg);
   -moz-transform: scaleX(-1) rotate(20deg);
   transform: scaleX(-1) rotate(20deg);
-    -webkit-animation: translate2 1s linear infinite;
-    -moz-animation: translate2 1s linear infinite;
-    animation: translate2 1s linear infinite;
+    -webkit-animation: translate2 2s linear infinite;
+    -moz-animation: translate2 2s linear infinite;
+    animation: translate2 2s linear infinite;
   }
   #animation8 {
   -webkit-transform: rotate(10deg);
   -moz-transform: rotate(10deg);
   transform: rotate(10deg);
-    -webkit-animation: translate1 1s linear infinite;
-    -moz-animation: translate1 1s linear infinite;
-    animation: translate1 1s linear infinite;
+    -webkit-animation: translate1 2s linear infinite;
+    -moz-animation: translate1 2s linear infinite;
+    animation: translate1 2s linear infinite;
   }
 
         .locate1 {
