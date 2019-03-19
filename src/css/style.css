@@ -6,22 +6,112 @@
       transform: scale(1.05);
       transform-origin: center center;
     }
-
     to {
       transform: scale(1.02);
       transform-origin: center center;
     }
   }
-
+  @-webkit-keyframes scale {
+    from {
+      transform: scale(1, 1);
+    }
+    to {
+      transform: scale(1, -1);
+    }
+  }
+  @-webkit-keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-moz-keyframes glow {
+    from {
+      transform: scale(1.05);
+      transform-origin: center center;
+    }
+    to {
+      transform: scale(1.02);
+      transform-origin: center center;
+    }
+  }
+  @keyframes glow {
+    from {
+      transform: scale(1.05);
+      transform-origin: center center;
+    }
+    to {
+      transform: scale(1.02);
+      transform-origin: center center;
+    }
+  }
   @-webkit-keyframes move-left {
-    0%   {left: -120%;}
-    100%  {left: 120%;}
+    0%   {left: -300%;}
+    100%  {left: 300%;}
   }
-
+  @-moz-keyframes move-left {
+    0%   {left: -300%;}
+    100%  {left: 300%;}
+  }
+  @keyframes move-left {
+    0%   {left: -300%;}
+    100%  {left: 300%;}
+  }
+  @-webkit-keyframes translate1 {
+    0%   {left: 200%;top: 0%}
+    100%  {left: -200%;top: -40%}
+  }
+  @-moz-keyframes translate1 {
+    0%   {left: 200%;top: 0%}
+    100%  {left: -200%;top: -40%}
+  }
+  @keyframes translate1 {
+    0%   {left: 200%;top: 0%}
+    100%  {left: -200%;top: -40%}
+  }
+  @-webkit-keyframes translate2 {
+    0%   {right: 150%;top: 0%}
+    100%  {right: -150%;top: -70%}
+  }
+  @-moz-keyframes translate2 {
+    0%   {right: 150%;top: 0%}
+    100%  {right: -150%;top: -70%}
+  }
+  @keyframes translate2 {
+    0%   {right: 150%;top: 0%}
+    100%  {right: -150%;top: -70%}
+  }
   @-webkit-keyframes move-right {
-    0%   {left: 120%;}
-    100%  {left: -120%;}
+    0%   {left: 300%;}
+    100%  {left: -300%;}
   }
+  @-moz-keyframes move-right {
+    0%   {left: 300%;}
+    100%  {left: -300%;}
+  }
+  @keyframes move-right {
+    0%   {left: 300%;}
+    100%  {left: -300%;}
+}
+
 
 /* font selection */
 *{
