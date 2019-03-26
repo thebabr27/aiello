@@ -7,15 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
             lat = position.coords.latitude;
             long = position.coords.longitude;
         }, function () {
-            console.log('errore geo');
         });
     } else {
         console.log('geo non disponibile');
     }
 
     /* La Fetch API fornisce un'interfaccia moderna per ottenere risorse */
-    const url = 'https://api.apixu.com/v1/current.json?key=';
-    const key = '0db36efa0a20473b95a112940191203';
+    const url = 'https://api.apixu.com/v1/forecast.json?key=';
+    const key = '87d7c0c10b874d8fbfb91809192202';
     var latlong = lat + ',' + long
     var requestURL = url + key + '&q=' + latlong;
     /*+'&q='+city*/
@@ -29,19 +28,22 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.json()) //qui avviene la risposta al server e viene trasferito in un file json
         .then(res => { //al quale possiamo accedere coi vari metodi da questa seconda parte
-            console.log(res);
             loc = (res.location.tz_id);
             slashpos = loc.search("/")+1;
             locmod = loc.slice(slashpos);
             locdef = locmod.replace("_", " ");
-            locdefdef = locdef.uppercase();
-            document.getElementById('citta').innerHTML = locdefdef;
+            cond = (res.current.condition.text);
+            cond2 = cond.replace(" ", "_");
+            condef = cond2.toLowerCase();
+
+            document.getElementById('citta').innerHTML = locdef;
             document.getElementById('temperatura').innerHTML = res.current.temp_c + ' °';
-            document.getElementById('weatherCity').innerHTML = res.current.condition.text;
-            document.getElementById('icon').style.backgroundImage = "url(src/img/" + res.current.condition.text.toLowerCase() + ".png)";
+            /*document.getElementById('weatherCity').innerHTML = res.current.condition.text;*/
+            document.getElementById('maxi-icona').style.backgroundImage = 'url("src/img/" + condef + ".svg")';
+            /*
             document.getElementById('humidity').innerHTML = res.current.humidity;
             document.getElementById('feelsLike').innerHTML = res.current.feelslike_c;
-            /* per ciclare un array esiste il metodo .map (nomeArray.map (function(res){
+             per ciclare un array esiste il metodo .map (nomeArray.map (function(res){
             ... cosa deve far comparire ..
             })) */
         }).catch(err => { //in caso di errore stampamelo in console
@@ -85,22 +87,43 @@ document.getElementById("giorno").innerHTML = day;
 
 var exp = new Date().getHours();
 var exp2 = new Date().getMinutes();
-var orario = exp + ":" + exp2;
+var exp2def = exp2.toPrecision(2);
+var orario = exp + ":" + exp2def;
 
 document.getElementById("orario").innerHTML = orario;
 
+var bgalba = "linear-gradient(180deg, #9FC1F7 0%, #E48C75 100%)"
+var bgmatt = "linear-gradient(180deg, #3C8AFC 0%, #ACD9F4 100%)"
+var bgpome = "linear-gradient(180deg, #1A6DE1 0%, #8AD4F1 100%)"
+var bgsera = "linear-gradient(180deg, #03223F 0%, #7D4D7B 50.83%, #DD7962 100%)"
+var bgnotte = "linear-gradient(180deg, #000203 0%, #002746 100%)"
 switch (exp) {
-    case ( 5 < exp < 7):
-        orario = "mattino";
-        break;
-    case ( exp < 18):
-        orario = "giorno";
-        break;
-    case ( exp < 21):
-        orario = "sera";
-        break;
-    case ( exp < 5):
-        orario = "notte";
-}
 
-document.getElementById("all").style.backgroundImage = "url(src/img/" + orario +".png)";
+    case (0), (1), (2), (3), (4), (5):
+    document.getElementById("allprova").style.background = bgnotte; //h0
+    document.getElementById("titolo").innerHTML = "<br><br><br>Buonanotte...";
+    document.getElementById("sottotitolo").innerHTML = "Ricorda di mettere la sveglia per domani";
+    document.getElementById("rondini1").classList.add = "hidden";
+    break;
+    case (6), (7), (8):
+    document.getElementById("allprova").style.background = bgalba; //h6
+    break;
+    case (9), (10), (11), (12), (13):
+    document.getElementById("allprova").style.background = bgmatt; //h9
+    break;
+    case (14), (15), (16), (17), (18):
+    document.getElementById("allprova").style.background = bgpome; //h14
+    break;
+    case (19), (20):
+    document.getElementById("allprova").style.background = bgsera; //h19
+    case (21), (22), (23):
+    document.getElementById("allprova").style.background = bgnotte; //h23
+    document.getElementById("titolo").innerHTML = "<br><br><br>Buonanotte..."; //h4
+    document.getElementById("sottotitolo").innerHTML = "Ricorda di mettere la sveglia per domani"; //h4
+    var element = document.getElementById("animazione");
+    element.classList.add("hidden");
+    break;
+}
+/*
+document.getElementById("allprova").style.background = linear-gradient(180deg, #9FC2F8 0%, #E58C74 100%);
+*/
