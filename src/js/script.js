@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.json()) //qui avviene la risposta al server e viene trasferito in un file json
         .then(res => { //al quale possiamo accedere coi vari metodi da questa seconda parte
+            console.log();
             loc = (res.location.tz_id);
             slashpos = loc.search("/")+1;
             locmod = loc.slice(slashpos);
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cond = (res.current.condition.text);
             cond2 = cond.replace(" ", "_");
             condef = cond2.toLowerCase();
-
+               
             document.getElementById('citta').innerHTML = locdef;
             document.getElementById('temperatura').innerHTML = res.current.temp_c + ' °';
             /*document.getElementById('weatherCity').innerHTML = res.current.condition.text;*/
