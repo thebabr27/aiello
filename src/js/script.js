@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(response => response.json()) //qui avviene la risposta al server e viene trasferito in un file json
         .then(res => { //al quale possiamo accedere coi vari metodi da questa seconda parte
-            console.log();
+            console.log(res);
             loc = (res.location.tz_id);
             slashpos = loc.search("/")+1;
             locmod = loc.slice(slashpos);
