@@ -271,8 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "skyline_A_Roma_home_1"
   ];
 
-  lat = 41.9061698; //default Roma
-  long = 12.494124300000001; //default Roma
+  lat = 51.5085300; //default Londra
+  long = 0.1257400; //default Londra
 
     // Handler when the DOM is fully loaded
     if (navigator.geolocation) {
