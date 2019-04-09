@@ -330,9 +330,9 @@ let getMeteoData = () => fetch(requestURL)
             giornoonotte = "notte";
           }
           {/* simula sereno o nuvoloso
-            */}
           serenoonuvoloso = "nuvoloso";
           alert("simulazione in corso...");
+            */}
           changeBg(serenoonuvoloso, ore, giornoonotte); //cambia bg ora per ora a seconda se è sereno o nuvoloso
 
           {/* simula un altra città
