@@ -9,8 +9,10 @@
   var bgnotte = "linear-gradient(180deg, #000203 0%, #002746 100%)";
   var bgnuvo1 = "linear-gradient(180deg, #B6BDC2 0%, #3B4C5C 100%)";
   var bgnuvo2 = "linear-gradient(180deg, #82919A 0%, #26383C 100%)";
+  {
 /*
   // le skylines in svg
+
   var skyline_Roma_C_alba = (
     '<svg width="467" height="294" viewBox="0 0 467 294" fill="none" xmlns="http://www.w3.org/2000/svg">'+
     '<g clip-path="url(#clip0)">'+
@@ -39,7 +41,6 @@
     '<path d="M298.3 173.5H266.3L253.7 182.5V293.5H272.7H310.7V182.5L298.3 173.5Z" fill="#74382E"/>'+
     '<path d="M130 182.7H98L85.3 192.4V290H104.3H142.4V192.4L130 182.7Z" fill="#74382E"/></g></svg>'
   );
-
   var skyline_Roma_C_notte = (
     '<svg width="467" height="294" viewBox="0 0 467 294" fill="none" xmlns="http://www.w3.org/2000/svg">'+
     '<g opacity="0.1">'+
@@ -72,6 +73,7 @@
     );
 */
   // le array delle skylines
+}
   var skylinesalba = ["skyline_A_Roma_home_alba", "skyline_B_Roma_home_alba", "skyline_C_Roma_home_alba"];
   var skylinesmatt = ["skyline_A_Roma_home_matt", "skyline_B_Roma_home_matt", "skyline_C_Roma_home_matt"];
   var skylinespome = ["skyline_A_Roma_home_notte", "skyline_B_Roma_home_notte", "skyline_C_Roma_home_notte"];
@@ -81,7 +83,7 @@
   var skylinesnuvo2 = ["skyline_A_Roma_home_notte", "skyline_B_Roma_home_notte", "skyline_C_Roma_home_notte"];
 
   // variabili di tempo e luogo
-   var giornoonotte; var ore; var mins; var lat; var long;var locdef; var thislocation;  var thistemp;
+   var giornoonotte; var ore; var mins; var lat; var long; var latlong; var locdef; var thislocation;  var thistemp;
   // variabili per la struttura
   var pageElements; var res; var thisres;
   // tutte le variabili meteo
@@ -89,6 +91,7 @@
   var albaSereno; var mattSereno; var pomeSereno; var seraSereno; var notteSereno;
   var mattNuvoloso; var pomeNuvoloso; var seraNuvoloso; var notteNuvoloso;
 
+  {
 /*
   //tutte le icone in svg
   var iconasole = (
@@ -144,7 +147,6 @@
   // 4 - 1006 - nuvoloso
   '<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">'+
   '<path class="path_maxi-icona" d="M304.956 186.719C297.026 186.719 289.563 188.381 282.752 191.428C283.778 186.626 284.338 181.64 284.338 176.562C284.338 137.041 251.965 105 212.035 105C182.461 105 157.085 122.636 145.889 147.845C137.12 144.428 127.51 142.489 117.434 142.489C74.7055 142.489 40 176.839 40 219.129C40 261.42 74.7055 295.769 117.434 295.769C119.207 295.769 120.886 295.677 122.566 295.585V295.769H304.956C335.37 295.769 360 271.392 360 241.29C360 211.188 335.37 186.719 304.956 186.719Z" stroke="#FFC700" stroke-width="10" stroke-miterlimit="10"/></svg>'
-
   );
   var iconanuvolona = (
     // 5 - 1009 - molto nuvoloso
@@ -213,6 +215,7 @@
       '</clipPath></defs></svg>'
     );
 */
+}
     //identificazione icone giorno per match con id apixu
   var iconenotte = [
     "iconaluna", "iconalunanuvo", "iconanuvola", "iconanuvola", "iconanebbia",
@@ -256,8 +259,7 @@
     ];
 }
 
-//equivalente al main
-document.addEventListener("DOMContentLoaded", () => {
+
 
   //elementi modificabili in ogni pagina (cosa cambiare)
   pageElements = [
@@ -271,42 +273,49 @@ document.addEventListener("DOMContentLoaded", () => {
     "skyline_A_Roma_home_1"
   ];
 
-  lat = 51.5085300; //default Londra
-  long = 0.1257400; //default Londra
+lat = 51.5085300; //default Londra
+long = 0.1257400; //default Londra
 
-    // Handler when the DOM is fully loaded
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            lat = position.coords.latitude;
-            long = position.coords.longitude;
-        }, function () {
+//Language
+let lang = 'it';
+
+//API Address
+const url = 'https://api.apixu.com/v1/forecast.json?key=';
+const key = '0db36efa0a20473b95a112940191203';
+let requestURL;
+var requestcount;
+
+//GeoLocation
+let GetLocation = () => {
+    let nav = navigator.geolocation
+    if (nav) {
+        nav.getCurrentPosition((position) => {
+            latlong = position.coords.latitude + ',' + position.coords.longitude;
+            requestURL = url + key + '&lang=' + lang + '&q=' + latlong + '&days=7';
+            console.log(latlong)
+            return requestURL;
+        }, () => {
+            console.log('errore geo');
         });
     } else {
         console.log('geo non disponibile');
     }
-
-    /* La Fetch API fornisce un'interfaccia moderna per ottenere risorse */
-    const url = 'https://api.apixu.com/v1/forecast.json?key=';
-    const key = '87d7c0c10b874d8fbfb91809192202';
-    var latlong = lat + ',' + long
-    var requestURL = url + key + '&q=' + latlong;
-    /*+'&q='+city*/
-
-    const controller = new AbortController()
-    const signal = controller.signal
-
-    // per prima cosa ovviamente chiede l'url del nostro file json
-    var getValue = () => fetch(requestURL, {signal})
-        .then(response => response.json()) //qui avviene la risposta al server e viene trasferito in un file json
-        .then(res => { //al quale possiamo accedere coi vari metodi da questa seconda parte
+}
 
 
-          console.log(res.forecast.forecastday[0]);
-          iconcode = res.current.condition.code;
-          thislocation = res.location.tz_id;
-          thistemp = res.current.temp_c + '°';
+let getMeteoData = () => fetch(requestURL)
+    .then(response => response.json())
+    .then(res => {
 
-          loadDayandTime(); //caricamento città, giorno e orario
+      if (thislocation == undefined)  {
+        requestcount+=1;
+
+        console.log(requestURL);
+        console.log(requestcount);
+        iconcode = res.current.condition.code;
+        thislocation = res.location.tz_id;
+        thistemp = res.current.temp_c + '°';
+        loadDayandTime(); //caricamento città, giorno e orario
 
           switchSeroNuv(iconcode); //switch tra sereno e nuvoloso per il caricamento del bg
 
@@ -321,9 +330,9 @@ document.addEventListener("DOMContentLoaded", () => {
             giornoonotte = "notte";
           }
           {/* simula sereno o nuvoloso
+            */}
           serenoonuvoloso = "nuvoloso";
           alert("simulazione in corso...");
-          */}
           changeBg(serenoonuvoloso, ore, giornoonotte); //cambia bg ora per ora a seconda se è sereno o nuvoloso
 
           {/* simula un altra città
@@ -346,20 +355,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
           hideAni(); //nasconde le animazioni delle rondini e delle nuvole
 
-        }).catch(err => { //in caso di errore stampamelo in console
+      };
+
+
+        })
+        .catch(err => {
             if (err.name === 'AbortError') {
                 console.error('Fetch aborted')
+                setTimeout(getMeteoData, 1000);
             } else {
                 console.error('Another error', err)
             }
         })
-    getValue();
-  });
+
+window.onload = () =>{
+    GetLocation();
+    setInterval(GetLocation, 55000);
+    setTimeout(getMeteoData, 500);
+    setInterval(getMeteoData, 1500);
+}
 
 ////////////// main end //////////////////////////
 //////////////////////////////////////////////////
 
 // carica la temperatura in gradi centigradi
+
 function loadTemp() {
   document.getElementById('temperatura').innerHTML = thistemp;
 };
@@ -596,7 +616,13 @@ function hideAni() {
       document.getElementById("animation3").classList.add("hidden");
     break;
     case "giorno":
-
+    switch (serenoonuvoloso) {
+      case "nuvoloso":
+        document.getElementById("animazione").classList.add("hidden");
+        document.getElementById("animation2").classList.add("hidden");
+        document.getElementById("animation3").classList.add("hidden");
+        break;
+    };
     break;
   };
 };
