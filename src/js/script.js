@@ -10,6 +10,8 @@
   var bgnuvo1 = "linear-gradient(180deg, #B6BDC2 0%, #3B4C5C 100%)";
   var bgnuvo2 = "linear-gradient(180deg, #82919A 0%, #26383C 100%)";
   {
+
+  var titolo; var sottotitolo;
 /*
   // le skylines in svg
 
@@ -314,13 +316,14 @@ let getMeteoData = () => fetch(requestURL)
         console.log(requestcount);
         iconcode = res.current.condition.code;
         thislocation = res.location.tz_id;
-        thistemp = res.current.temp_c + '°';
+        righttemp = res.current.temp_c.toPrecision(2);
+        thistemp = righttemp + '°';
         loadDayandTime(); //caricamento città, giorno e orario
 
           switchSeroNuv(iconcode); //switch tra sereno e nuvoloso per il caricamento del bg
 
           {/* simula un orario differente
-          ore = 7 ;
+          ore = 16 ;
           alert("simulazione in corso...");
           */}
 
@@ -332,8 +335,8 @@ let getMeteoData = () => fetch(requestURL)
           {/* simula sereno o nuvoloso
           serenoonuvoloso = "nuvoloso";
           alert("simulazione in corso...");
-            */}
-          changeBg(serenoonuvoloso, ore, giornoonotte); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+          */}
+          changeBgAndTitle(serenoonuvoloso, ore, giornoonotte); //cambia bg ora per ora a seconda se è sereno o nuvoloso
 
           {/* simula un altra città
           thislocation = "UK/London";
@@ -390,6 +393,9 @@ function loadCity() {
   slashpos = loc.search("/")+1;
   locmod = loc.slice(slashpos);
   locdef = locmod.replace("_", " ");
+  if (locdef="Rome") {
+    locdef="Roma";
+  }
   document.getElementById('citta').innerHTML = locdef;
 };
 
@@ -413,47 +419,68 @@ function changeSkylines(array) {
   document.getElementById(pageElements[7]).src = "src/img/icons/"+array[2]+".svg";
 };
 
+
+function changeTitolo(title, subtitle) {
+  document.getElementById(pageElements[1]).innerHTML = title;
+    document.getElementById(pageElements[2]).innerHTML = subtitle;
+};
+
+
 //funzione che cambia sfondo a seconda dell'ora e della condizione meteo
 // in aggiunta anche cambio dell'svg delle skylines
-function changeBg(cond, h, gn) {
+function changeBgAndTitle(cond, h, gn) {
 switch (gn) {
   case ("notte"):
     changeSkylines(skylinesnotte);
     loadBG(pageElements[0], bgnotte);
+    changeTitolo("<br><br><br>Buonanotte...", "Ricordiamoci di impostare la sveglia per domani."); //cambia bg ora per ora a seconda se è sereno o nuvoloso
     break;
   case ("giorno"):
   switch (cond) {
     case ("nuvoloso"):
-      if (h > 6 && h < 14) {
+      if (h >= 6 && h < 14) {
         changeSkylines(skylinesnuvo1);
         loadBG(pageElements[0], bgnuvo1);
+        changeTitolo("<br><br>Che tempaccio...", "Ombrello, scarpe chiuse, cappotto e cappuccio sono d'obbligo!"); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
       else {
         changeSkylines(skylinesnuvo2);
         loadBG(pageElements[0], bgnuvo2);
+        changeTitolo("<br><br>Che tempaccio...", "Stasera cena a casa, divano e un bel film!"); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
     break;
     case ("sereno"):
-      if (h > 6 && h < 8) {
+      if (h >= 6 && h < 8) {
         changeSkylines(skylinesalba);
         loadBG(pageElements[0], bgalba);
+        changeTitolo("<br><br>Giornata fantastica!", "Approfittiamone per una lavata alla macchina, ci vuole!"); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
-      if (h > 7 && h < 14) {
+      if (h >= 8 && h < 14) {
         changeSkylines(skylinesmatt);
         loadBG(pageElements[0], bgmatt);
+        changeTitolo("<br><br>Giornata fantastica!", "Si potrebbe andare a visitare una città non ancora esplorata."); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
-      if (h > 13 && h < 19) {
+      if (h >= 13 && h < 19) {
         changeSkylines(skylinespome);
         loadBG(pageElements[0], bgpome);
+        changeTitolo("Oggi un sole che spacca le pietre!", "Dov'è che avevo visto quella gelateria?"); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
-      if (h > 18 && h < 21) {
+      if (h >= 18 && h < 21) {
         changeSkylines(skylinessera);
         loadBG(pageElements[0], bgsera);
+        changeTitolo("<br><br>Serata fantastica!", "Organizziamo un uscita fuori con gli amici!"); //cambia bg ora per ora a seconda se è sereno o nuvoloso
+
       }
     break;
     }
   }
 }
+
 
 //azione che a seconda dell'iconcode specifica se è sereno o nuvoloso
 function switchSeroNuv(code) {
@@ -626,15 +653,7 @@ function hideAni() {
     break;
   };
 };
-//azione che carica il sottotitolo corretto
-function loadSubtitle(array1, array2) {
-  document.getElementById(array1[2]).innerHTML = array2[2];//sottotitolo della home
-};
 
-//azione che carica il titolo corretto
-function loadTitle(array1, array2) {
-  document.getElementById(array1[1]).innerHTML = array2[1];//titolo della home
-};
 
 //funzione che carica città, luogo e orario
 function loadDayandTime() {
