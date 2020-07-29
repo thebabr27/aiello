@@ -60,7 +60,7 @@ function toggleGoHour() {
 verifyValidation(4);
 
 };
-buttonGoHour.addEventListener('click', e => {
+buttonHourSelected.addEventListener('click', e => {
 
 toggleGoHour();
 });
