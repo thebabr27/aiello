@@ -10,7 +10,7 @@ appId: "1:1010593277055:web:1b729dc7368b8f6f"
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 console.log("firebase loaded");
-var swiperH = new Swiper('.swiper-container-h', {cssMode:true,spaceBetween: 50,pagination: {el: '.swiper-pagination-h',clickable: true,},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',spaceBetween: 50,speed: 600,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleNewRes() { 
+var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 30,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 30,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleNewRes() { 
 bulletClick(14);
 
 };
@@ -145,6 +145,7 @@ bulletClick(17);
 
 break;
 case 5:
+if (inputName.valid!=undefined && inputSurname.valid!=undefined && inputPhone.valid!=undefined && inputEmail.valid!=undefined ) {
 document.getElementById("confirmSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("confirmSpin").classList.toggle("d-none");
@@ -152,6 +153,9 @@ firebase.database().ref("db/aiello/public/"+inputSurname.value+"_"+inputName.val
 
 }, 500);
 
+} else {
+document.getElementById("riepilogo").style.border = "3px solid red";
+};
 break;
 }
 
