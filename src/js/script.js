@@ -10,7 +10,7 @@ appId: "1:1010593277055:web:1b729dc7368b8f6f"
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 console.log("firebase loaded");
-var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 30,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 30,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleNewRes() { 
+var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 50,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 50,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleNewRes() { 
 bulletClick(14);
 
 };
@@ -59,7 +59,117 @@ function bulletClick(bul) {
 document.getElementsByClassName("swiper-pagination-bullet")[bul].click();
 
 };
-function validateInput(theInput) { 
+function validateInput(theInput,type) { 
+switch (type) {
+case "string":
+if(theInput.value=='' ){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	if(theInput.value.indexOf('0')>=0 || theInput.value.indexOf('1')>=0 || theInput.value.indexOf('2')>=0 || theInput.value.indexOf('3')>=0 || theInput.value.indexOf('4')>=0 || theInput.value.indexOf('5')>=0 || theInput.value.indexOf('6')>=0 || theInput.value.indexOf('7')>=0 || theInput.value.indexOf('8')>=0 || theInput.value.indexOf('9')>=0 || theInput.value.indexOf('"')>=0 || theInput.value.indexOf("'")>=0 || theInput.value.indexOf('(')>=0 || theInput.value.indexOf(')')>=0 || theInput.value.indexOf('[')>=0 || theInput.value.indexOf(']')>=0 || theInput.value.indexOf('%')>=0 || theInput.value.indexOf('$')>=0 || theInput.value.indexOf('!')>=0 || theInput.value.indexOf(',')>=0 || theInput.value.indexOf('.')>=0 || theInput.value.indexOf('?')>=0 || theInput.value.indexOf('=')>=0 || theInput.value.indexOf('*')>=0 || theInput.value.indexOf('#')>=0 || theInput.value.indexOf('@')>=0 ){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	theInput.style.border="1px solid #ced4da";
+var items=theInput.value.split(" "),str="";
+for (var item in items) {
+if (item!=0) {str+=" "};
+str+=items[item][0].toUpperCase()+items[item].slice(1,items[item].length);
+}
+theInput.value=str;
+theInput.setAttribute("valid","true");
+return true
+
+}
+
+}
+break;
+case "email":
+if(theInput.value=='' ){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	if(theInput.value.indexOf('@')<0 || theInput.value.split('@')[1].split('.')[1]!='com'&& theInput.value.split('@')[1].split('.')[1]!='it'){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	theInput.style.border="1px solid #ced4da";
+theInput.setAttribute("valid","true");
+return true
+
+}
+
+}
+break;
+case "phone":
+if(theInput.value=='' ){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	if(theInput.value.length!=10 || theInput.value[0]!='3'){
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+setTimeout(( ) => {
+	document.getElementById(theInput.id).nextSibling.nextSibling.classList.toggle("d-none");
+
+}, 1500);
+
+theInput.style.border="3px solid red";
+theInput.removeAttribute("valid");
+return false
+
+} else {
+	theInput.style.border="1px solid #ced4da";
+theInput.setAttribute("valid","true");
+return true
+
+}
+theInput.style.border="1px solid #ced4da";
+theInput.setAttribute("valid","true");
+return true
+
+}
+break;
+}
 if(theInput.value=='' ){
 	theInput.style.border="3px solid red";
 theInput.removeAttribute("valid");
@@ -77,12 +187,6 @@ function calendarClick(day) {
 inputDay = day.split("_")[0];
 inputMonth = day.split("_")[1];
 inputYear = day.split("_")[2];
-console.log(inputDay);
-
-console.log(inputMonth);
-
-console.log(inputYear);
-
 if(previousSelDay){
 	document.getElementById(previousSelDay).classList.toggle("bg-warning");document.getElementById(previousSelDay).classList.toggle("bg-light");
 
@@ -103,10 +207,10 @@ if(buttonEditRes.classList.contains("focus")){
 }
 break;
 case 2:
-nameValidation= validateInput(inputName);
-surnameValidation= validateInput(inputSurname);
-emailValidation= validateInput(inputEmail);
-phoneValidation= validateInput(inputPhone);
+nameValidation= validateInput(inputName,"string");
+surnameValidation= validateInput(inputSurname,"string");
+emailValidation= validateInput(inputEmail,"email");
+phoneValidation= validateInput(inputPhone,"phone");
 if(nameValidation && surnameValidation && emailValidation && phoneValidation){
 	document.getElementById("dataSpin").classList.toggle("d-none");
 setTimeout(( ) => {
@@ -119,12 +223,6 @@ bulletClick(15);
 }
 break;
 case 3:
-console.log(inputDay+" "+dayValidation);
-
-console.log(inputYear+" "+yearValidation);
-
-console.log(inputMonth+" "+monthValidation);
-
 document.getElementById("calendarSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("calendarSpin").classList.toggle("d-none");
@@ -141,20 +239,23 @@ bulletClick(17);
 
 }, 500);
 
-	document.getElementById("riepilogo").innerHTML = "<h5 class=' mb-4 card-title text-center'>Riepilogo Prenotazione</h5><p class=' card-text text-left'>Nome: "+inputName.value+"</p><p class=' card-text text-left'>Cognome: "+inputSurname.value+"</p><p class=' card-text text-left'>Data appuntamento: "+inputDay+"/"+inputMonth+"/"+inputYear+"</p><p class=' card-text text-left'>Orario appuntamento: "+inputHour.value+":"+inputMinutes.value+"</p><p class=' card-text text-left'>Servizio richiesto: "+inputService.value+"</p>";;
+	document.getElementById("riepilogo").innerHTML = "<div class='container '><h5 class=' mb-4 card-title text-center'>Riepilogo Prenotazione</h5><p class=' card-text text-left'>Nome: "+inputName.value+"</p><p class=' card-text text-left'>Cognome: "+inputSurname.value+"</p><p class=' card-text text-left'>Data appuntamento: "+inputDay+"/"+inputMonth+"/"+inputYear+"</p><p class=' card-text text-left'>Orario appuntamento: "+inputHour.value+":"+inputMinutes.value+"</p><p class=' card-text text-left'>Servizio richiesto: "+inputService.value+"</p></div>";;
 
 break;
 case 5:
-if (inputName.valid!=undefined && inputSurname.valid!=undefined && inputPhone.valid!=undefined && inputEmail.valid!=undefined ) {
+if (nameValidation && surnameValidation && phoneValidation && emailValidation ) {
 document.getElementById("confirmSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("confirmSpin").classList.toggle("d-none");
 firebase.database().ref("db/aiello/public/"+inputSurname.value+"_"+inputName.value).set({"service": inputService.value,"name": inputName.value,"surname": inputSurname.value,"phone": inputPhone.value,"email": inputEmail.value,"hour": inputHour.value,"minutes": inputMinutes.value,"day": inputDay,"month": inputMonth,"year": inputYear,});
+document.getElementById("confirmSpin").classList.toggle("d-none");
+document.getElementById("buttonConfirm").classList.add("disabled");
+document.getElementById("buttonConfirm").innerHTML = "Fatto!";
 
 }, 500);
 
 } else {
-document.getElementById("riepilogo").style.border = "3px solid red";
+document.getElementById("riepilogo").parentNode.style.border = "3px solid red";
 };
 break;
 }
