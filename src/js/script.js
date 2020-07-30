@@ -10,7 +10,31 @@ appId: "1:1010593277055:web:1b729dc7368b8f6f"
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 console.log("firebase loaded");
-var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 50,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 50,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleNewRes() { 
+var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 50,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 50,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonNewRes = document.getElementById("buttonNewRes");const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;function toggleDeactivateEnterKey() { 
+deactivateEnterKey();
+
+};
+inputName.addEventListener('keydown', e => {
+
+toggleDeactivateEnterKey();
+});
+
+inputSurname.addEventListener('keydown', e => {
+
+toggleDeactivateEnterKey();
+});
+
+inputEmail.addEventListener('keydown', e => {
+
+toggleDeactivateEnterKey();
+});
+
+inputPhone.addEventListener('keydown', e => {
+
+toggleDeactivateEnterKey();
+});
+
+function toggleNewRes() { 
 bulletClick(14);
 
 };
@@ -55,6 +79,12 @@ buttonConfirm.addEventListener('click', e => {
 toggleConfirmRes();
 });
 
+function deactivateEnterKey() { 
+if (event.keyCode === 13) {
+event.preventDefault();
+}
+
+};
 function bulletClick(bul) { 
 document.getElementsByClassName("swiper-pagination-bullet")[bul].click();
 
@@ -127,6 +157,7 @@ return false
 } else {
 	theInput.style.border="1px solid #ced4da";
 theInput.setAttribute("valid","true");
+theInput.value=theInput.value.toLowerCase();
 return true
 
 }
@@ -247,7 +278,7 @@ if (nameValidation && surnameValidation && phoneValidation && emailValidation ) 
 document.getElementById("confirmSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("confirmSpin").classList.toggle("d-none");
-firebase.database().ref("db/aiello/public/"+inputSurname.value+"_"+inputName.value).set({"service": inputService.value,"name": inputName.value,"surname": inputSurname.value,"phone": inputPhone.value,"email": inputEmail.value,"hour": inputHour.value,"minutes": inputMinutes.value,"day": inputDay,"month": inputMonth,"year": inputYear,});
+firebase.database().ref("db/aiello/published/"+inputSurname.value+"_"+inputName.value).set({"service": inputService.value,"name": inputName.value,"surname": inputSurname.value,"phone": inputPhone.value,"email": inputEmail.value,"hour": inputHour.value,"minutes": inputMinutes.value,"day": inputDay,"month": inputMonth,"year": inputYear,});
 document.getElementById("confirmSpin").classList.toggle("d-none");
 document.getElementById("buttonConfirm").classList.add("disabled");
 document.getElementById("buttonConfirm").innerHTML = "Fatto!";
