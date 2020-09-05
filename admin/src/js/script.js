@@ -51,6 +51,13 @@ document.getElementById("inputMinutes").value = "";
 document.getElementById("inputService").value = "";
 
 };
+function deleteItem(ind) { 
+eval("firebase.database().ref('db/aiello/waitinglist/"+Object.keys(data)[ind]+"').remove();");
+	document.getElementById("del"+ind).innerHTML = "<div class=\'spinner-border\' role=\'status\'></div>";
+
+setTimeout(()=>location.reload(),900);
+
+};
 function fillForm(ind) { 
 eval("var name = data."+Object.keys(data)[ind]+".name;");
 eval("var surname = data."+Object.keys(data)[ind]+".surname;");
@@ -100,11 +107,11 @@ case "status":
 switch (value) {
 case "wait":
 str1 = 'items+="<td><button onclick=\'fillForm("+j+"); \'  class=\'btn btn-warning \'><i class=\'fa fa-clock "+'
-str3 = '+"\'></i></button></td>";'
+str3 = '+"\'></i></button><td id=\'del"+j+"\'><button onclick=\'deleteItem("+j+"); \' class=\'btn btn-danger \'><i class=\'fa fa-times\'></i></button></td>";'
 break;
 default:
 str1 = 'items+="<td><button class=\'btn btn-success \'><i class=\'fa fa-check "+'
-str3 = '+"\'></i></button></td>";'
+str3 = '+"\'></i></button><td id=\'del"+j+"\'><button onclick=\'deleteItem("+j+"); \' class=\'btn btn-danger \'><i class=\'fa fa-times\'></i></button></td>";'
 }
 break;
 default:
@@ -121,11 +128,11 @@ case "status":
 switch (value) {
 case "wait":
 str1 = 'items+="<td><button onclick=\'fillForm("+j+"); \'  class=\'btn btn-warning \'><i class=\'fa fa-clock "+'
-str3 = '+"\'></i></button></td>";'
+str3 = '+"\'></i></button></td><td id=\'del"+j+"\' ><button onclick=\'deleteItem("+j+"); \' class=\'btn btn-danger \'><i class=\'fa fa-times\'></i></button></td>";'
 break;
 default:
 str1 = 'items+="<td><button class=\'btn btn-success \'><i class=\'fa fa-check "+'
-str3 = '+"\'></i></button></td>";'
+str3 = '+"\'></i></button><td id=\'del"+j+"\'><button onclick=\'deleteItem("+j+"); \' class=\'btn btn-danger \'><i class=\'fa fa-times\'></i></button></td>";'
 }
 break;
 default:

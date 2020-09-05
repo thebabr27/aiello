@@ -29,7 +29,7 @@ function calendarNext() {
 document.getElementsByClassName("swiper-button-next")[0].click()
 
 };
-var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 50,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 50,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const buttonEditRes = document.getElementById("buttonEditRes");const buttonGoEditRes = document.getElementById("buttonGoEditRes");const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;loadDay("5_Set_2020",100);calendarClick("5_Set_2020");function loadDay(day,wait) { 
+var swiperH = new Swiper('.swiper-container-h', {cssMode:true,slidesPerView: 1,spaceBetween: 50,mousewheel: true,speed: 400,pagination: {el: '.swiper-pagination-h',clickable: true,}, navigation: {nextEl: '.swiper-button-next',prevEl: '.swiper-button-prev',},});var swiperV = new Swiper('.swiper-container-v', {cssMode:true,direction: 'vertical',slidesPerView: 1,spaceBetween: 50,speed: 400,pagination: {el: '.swiper-pagination-v',clickable: true,},});const inputName = document.getElementById("inputName");const buttonConfirm = document.getElementById("buttonConfirm");const buttonDaySelected = document.getElementById("buttonDaySelected");const codeForm = document.getElementById("codeForm");var inputDay ="", inputMonth ="", inputYear ="";var inputService = document.getElementById("inputService");var nameValidation=false,surnameValidation=false,emailValidation=false,phoneValidation=false,serviceValidation=false,dayValidation=false,monthValidation=false,yearValidation=false,previousSelDay;loadDay("5_Set_2020",100);calendarClick("5_Set_2020");function loadDay(day,wait) { 
 var month = day.split("_")[1];
 var year = day.split("_")[2];
 var day = day.split("_")[0];
@@ -287,7 +287,7 @@ if(nameValidation && surnameValidation && emailValidation && phoneValidation){
 	document.getElementById("dataSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("dataSpin").classList.toggle("d-none");
-bulletClick(15);
+bulletClick(14);
 
 }, 500);
 
@@ -298,7 +298,7 @@ case 3:
 document.getElementById("calendarSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("calendarSpin").classList.toggle("d-none");
-bulletClick(16);
+bulletClick(15);
 
 }, 500);
 
@@ -307,7 +307,7 @@ case 4:
 document.getElementById("hourSpin").classList.toggle("d-none");
 setTimeout(( ) => {
 	document.getElementById("hourSpin").classList.toggle("d-none");
-bulletClick(17);
+bulletClick(16);
 
 }, 500);
 
